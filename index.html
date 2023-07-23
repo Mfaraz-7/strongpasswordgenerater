@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+    body{
+        font-family: 'Poppins', sans-serif;
+        background-image: linear-gradient(to right top, #00236a, #213a81, #385198, #4f6aaf, #6684c7, #638bca, #6192cc, #6198cd, #488bb8, #307ea3, #1a718d, #016378);
+
+        
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+    #main{
+        width: 500px;
+        height: 350px;
+        background-color: rgba(255, 255, 255, 0.115);
+        display: flex;
+        flex-direction: column;
+        border-radius: 18px;
+        align-items: center;
+    }
+    h1{
+        color: white;
+
+    }
+    input{
+        width: 66%;
+        height: 50px;
+        border-radius: 10px;
+        outline: 0;
+        border: 0;
+        padding-left: 20px;
+        font-size: 20px;
+        color: grey;
+
+    }
+    #cc{
+        margin-top: 20px;
+        width: 70%;
+        height: 40px;
+        border-radius: 10px;
+        outline: 0;
+        border: 0;
+        font-size: 20px;
+        color: white;
+        background-color:#A6AABD;
+        cursor: pointer;
+        transition: all ease 0.1s;
+    }
+    #cc i{
+        margin-right: 10px;
+    }
+    #cc:hover{
+        scale: 1.02;
+    }
+    #gp{
+        margin-top: 20px;
+        width: 70%;
+        height: 50px;
+        border-radius: 10px;
+        outline: 0;
+        border: 0;
+        background-color:#006cd1;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all ease 0.1s;
+    }
+    #gp i{
+        margin-right: 10px;
+    }
+    #gp:hover{
+        scale: 1.02;
+    }
+    @media (max-width: 450px) {
+        body{
+            margin: 0;padding: 0;box-sizing: border-box;
+            
+        }
+        #main{
+            width: 90vw;
+            height: 400px;
+        }
+        h1{
+            font-size: 28px;
+            text-align: center;
+        }
+    }
+
+</style>
+<body>
+    <div id="main">
+        <h1 id="h1">Random Password Generater</h1>
+        <input type="text" name="" id="password">
+        <button id="cc" onclick="copyPassword()"><i class="fa-regular fa-copy"></i>Copy</button><br>
+        <button id="gp" onclick="generatePassword()"><i class="fa-solid fa-bolt"></i>Generate Password</button>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js" integrity="sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js" integrity="sha512-0bHMhYsdpiur1bT84kDH4D7cpxFQ9O7uA5yxVAqWC87h552Xt0swX4M+ZlXMKE8oPVRIJ5lAwXWO2UWeDwJJOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script>
+        let passwordBox = document.getElementById('password');
+        let ccbtn = document.getElementById('cc');
+        let gpbtn = document.getElementById('gp');
+        
+        const length = 12;
+        const uppperCase = 'AYHGAEHBKHBVDGKBNJY8GJ'
+        const lowerCase = 'shugiugfvjzuog5uo3utgoui'
+        const number = '0123456789'
+        const symbol = '!@#$%^&*'
+        const allchar = uppperCase + lowerCase + number + symbol;
+
+        function generatePassword(){
+            let password = '';
+
+            password += uppperCase[Math.floor(Math.random() * uppperCase.length)];
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            password += number[Math.floor(Math.random() * number.length)];
+            password += symbol[Math.floor(Math.random() * symbol.length)];
+
+            console.log(password)
+            while(length > password.length){
+                password += allchar[Math.floor(Math.random() * allchar.length)]
+            }
+            passwordBox.value = password
+        }
+
+        function copyPassword(){
+            passwordBox.select();
+            document.execCommand("copy")
+        }
+
+
+
+        let tl = gsap.timeline()
+        tl.from("#main", {
+            opacity: 0,
+            y: 50,
+
+        })
+        tl.from(["#password"], {
+            opacity: 0,
+            y: 50,
+            delay: -0.4
+        })
+        tl.from(["#cc"], {
+            opacity: 0,
+            y: 50,
+            delay: -0.4
+        })
+        tl.from(["#gp"], {
+            opacity: 0,
+            y: 50,
+            delay: -0.4
+        })
+
+        .from("#h1", {
+            delay: -0.1,
+            onStart:function () {
+                $('#h1').textillate({
+                    in: {
+                        effect: 'fadeInDown',
+                    },
+                })
+            }
+        })
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
